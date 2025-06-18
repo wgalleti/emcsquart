@@ -5,13 +5,14 @@ import HintsPanel from './components/HintsPanel.vue'
 import BriefingScreen from './components/BriefingScreen.vue'
 import SuccessScreen from './components/SuccessScreen.vue'
 import ThemeToggle from './components/ThemeToggle.vue'
+import AppFooter from './components/AppFooter.vue'
 
 const puzzleStore = usePuzzleStore()
 </script>
 
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-purple-50 via-purple-25 to-white dark:from-gray-900 dark:via-purple-950 dark:to-gray-950 text-gray-900 dark:text-gray-100 animate-fade-in"
+    class="min-h-screen bg-gradient-to-br from-purple-50 via-purple-25 to-white dark:from-gray-900 dark:via-purple-950 dark:to-gray-950 text-gray-900 dark:text-gray-100 animate-fade-in flex flex-col"
   >
     <!-- Header - Only show when game is started -->
     <header
@@ -67,27 +68,21 @@ const puzzleStore = usePuzzleStore()
     </header>
 
     <!-- Main Content -->
-    <main :class="puzzleStore.gameStarted ? 'max-w-7xl mx-auto p-6' : 'w-full'">
+    <main :class="puzzleStore.gameStarted ? 'max-w-7xl mx-auto p-6 flex-1' : 'w-full flex-1'">
       <!-- Briefing Screen - Show when game not started -->
-      <div
-        v-if="!puzzleStore.gameStarted"
-        class="min-h-screen flex items-center justify-center p-6"
-      >
+      <div v-if="!puzzleStore.gameStarted" class="flex-1 flex items-center justify-center p-6">
         <BriefingScreen />
       </div>
 
       <!-- Success Screen - Show when puzzle completed -->
-      <div
-        v-else-if="puzzleStore.isCompleted"
-        class="h-[calc(100vh-7rem)] flex items-center justify-center"
-      >
+      <div v-else-if="puzzleStore.isCompleted" class="flex-1 flex items-center justify-center">
         <SuccessScreen />
       </div>
 
       <!-- Game Screen - Show when game started but not completed -->
-      <div v-else class="h-[calc(100vh-7rem)] flex flex-col lg:flex-row gap-6">
+      <div v-else class="flex-1 flex flex-col lg:flex-row gap-6">
         <!-- Painel de dicas (30% do espaço) -->
-        <div class="lg:w-[30%] h-80 lg:h-full animate-slide-in">
+        <div class="lg:w-[30%] h-80 lg:flex-1 animate-slide-in">
           <HintsPanel />
         </div>
 
@@ -97,6 +92,9 @@ const puzzleStore = usePuzzleStore()
         </div>
       </div>
     </main>
+
+    <!-- Footer - Always visible -->
+    <AppFooter />
   </div>
 </template>
 
