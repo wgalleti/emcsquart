@@ -193,6 +193,7 @@
 <script setup>
 import PuzzleSelect from './ui/PuzzleSelect.vue'
 import { usePuzzleStore } from '../stores/puzzle'
+import { clearGameData } from '../utils/storage'
 
 const puzzleStore = usePuzzleStore()
 
@@ -203,11 +204,11 @@ const updateCell = (houseIndex, category, value) => {
 const resetGame = () => {
   if (
     confirm(
-      '🔄 Tem certeza que deseja reiniciar completamente? Todos os dados salvos serão perdidos e você voltará para a tela inicial.',
+      '🔄 Tem certeza que deseja reiniciar completamente? O progresso do jogo será perdido, mas suas configurações (como tema) serão mantidas.',
     )
   ) {
-    // Clear all localStorage data
-    localStorage.clear()
+    // Clear only game data, preserve user settings (theme, etc.)
+    clearGameData()
 
     // Reset puzzle store
     puzzleStore.resetPuzzle()

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://wgalleti.github.io/emcsquart/sitemap.xml
+
+# Desenvolvedor
+# William Gallëti Tech
+# https://wa.me/5565999448004 

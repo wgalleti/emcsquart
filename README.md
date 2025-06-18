@@ -27,7 +27,10 @@ Existem 5 casas em uma rua, cada uma com:
 - **Pinia** para gerenciamento de estado
 - **VueUse** para utilitários Vue
 - **Design responsivo** com foco mobile-first
-- **Modo escuro** suportado
+- **Modo escuro** suportado com persistência no localStorage
+- **PWA Ready** com manifest.json
+- **SEO otimizado** com meta tags elaboradas
+- **Sistema de tema** avançado (claro/escuro/automático)
 
 ## 🚀 Funcionalidades
 
@@ -145,7 +148,61 @@ O jogo salva automaticamente no **localStorage**:
 - ✅ Dicas reveladas
 - ✅ Tempo de início
 - ✅ Estatísticas (erros, dicas usadas)
-- ✅ Preferência de tema
+- ✅ Preferência de tema (store dedicado)
+
+## 🎨 Sistema de Temas
+
+### Funcionalidades do Tema
+
+- **3 modos disponíveis**: Claro, Escuro, Automático (sistema)
+- **Persistência**: Preferência salva no localStorage com `app-theme`
+- **Sincronização**: Detecta mudanças na preferência do sistema automaticamente
+- **Aplicação precoce**: Tema aplicado antes do Vue carregar (sem FOUC)
+- **Store dedicado**: `useThemeStore()` gerencia estado globalmente
+
+### Como Funciona
+
+1. **Inicialização precoce**: `theme-init.ts` aplica tema no carregamento
+2. **Store Pinia**: `theme.ts` gerencia estado reativo e persistência
+3. **ThemeToggle**: Componente alterna entre os 3 modos ciclicamente
+4. **Meta tags**: Theme-color atualizado dinamicamente
+
+### Comportamento do Toggle
+
+- **Claro** → **Escuro** → **Automático** → **Claro** → ...
+- **Feedback visual**: Ícone e tooltip indicam próximo estado
+- **Acessibilidade**: Screen reader support e título descritivo
+
+### Reset Inteligente
+
+- **Dados preservados**: Tema e outras configurações do usuário mantidas
+- **Dados limpos**: Apenas progresso do jogo (grid, tempo, estatísticas)
+- **Função seletiva**: `clearGameData()` em vez de `localStorage.clear()`
+- **Chaves do jogo**: `einstein-*` removidas, `app-theme` preservada
+- **UX melhorada**: Usuário não perde preferências ao reiniciar
+
+## 🔍 SEO e Acessibilidade
+
+### Meta Tags Otimizadas
+
+- **Open Graph** para compartilhamento em redes sociais
+- **Twitter Cards** para preview no Twitter
+- **Structured Data** (JSON-LD) para melhor indexação
+- **Meta tags** detalhadas em português
+- **Favicon** personalizado com logo do projeto
+
+### PWA Features
+
+- **Manifest.json** para instalação como app
+- **Theme color** roxa personalizada
+- **Ícones** otimizados para diferentes dispositivos
+- **Responsive** e mobile-friendly
+
+### Arquivos de SEO
+
+- ✅ `sitemap.xml` - Mapa do site para indexação
+- ✅ `robots.txt` - Orientações para bots de busca
+- ✅ `manifest.json` - Configuração PWA
 
 ## 🏆 Sistema de Pontuação
 
@@ -160,12 +217,18 @@ src/
 ├── components/
 │   ├── ui/              # Componentes base do design system
 │   ├── EinsteinGrid.vue # Grid principal do puzzle
-│   ├── PuzzleSidebar.vue# Painel lateral
+│   ├── AppFooter.vue    # Footer da aplicação
+│   ├── BriefingScreen.vue # Tela de introdução
+│   ├── SuccessScreen.vue  # Tela de sucesso
 │   └── ThemeToggle.vue  # Controle de tema
 ├── stores/
-│   └── puzzle.ts        # Store Pinia do puzzle
+│   ├── puzzle.ts        # Store Pinia do puzzle
+│   └── theme.ts         # Store Pinia do tema (NOVO)
 ├── lib/
 │   └── utils.ts         # Utilitários
+├── utils/
+│   ├── theme-init.ts    # Inicialização precoce do tema (NOVO)
+│   └── storage.ts       # Gerenciamento seletivo do localStorage (NOVO)
 └── assets/             # Estilos e recursos
 ```
 
