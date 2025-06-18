@@ -93,12 +93,33 @@ npm run preview
 ### Scripts Disponíveis
 
 ```bash
-npm run dev       # Servidor de desenvolvimento
-npm run build     # Build para produção
-npm run preview   # Preview da build
-npm run lint      # Linting com ESLint
-npm run format    # Formatação com Prettier
+npm run dev           # Servidor de desenvolvimento
+npm run build         # Build para produção
+npm run preview       # Preview da build
+npm run lint          # Linting com ESLint
+npm run format        # Formatação com Prettier
+npm run build:preview # Build + Preview em sequência
+npm run clean         # Limpar diretório dist
+npm run deploy:check  # Verificar tudo antes do deploy
 ```
+
+## 🚀 Deploy
+
+### GitHub Pages
+
+Este projeto está configurado para deploy automático no **GitHub Pages**:
+
+- **URL de Produção**: `https://wgalleti.github.io/emcsquart/`
+- **Deploy automático** via GitHub Actions
+- **Trigger**: Push para branch `main`
+
+### Configuração
+
+1. Habilite GitHub Pages nas configurações do repositório
+2. Selecione **GitHub Actions** como source
+3. Faça push para `main` - o deploy será automático
+
+Veja [DEPLOY.md](DEPLOY.md) para instruções detalhadas.
 
 ## 🎨 Design System
 
