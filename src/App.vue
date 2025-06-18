@@ -80,14 +80,14 @@ const puzzleStore = usePuzzleStore()
       </div>
 
       <!-- Game Screen - Show when game started but not completed -->
-      <div v-else class="flex-1 flex flex-col lg:flex-row gap-6">
+      <div v-else class="flex flex-col lg:flex-row gap-6 h-[75vh] lg:h-[80vh]">
         <!-- Painel de dicas (30% do espaço) -->
-        <div class="lg:w-[30%] h-80 lg:flex-1 animate-slide-in">
+        <div class="lg:w-[30%] h-80 lg:h-full animate-slide-in">
           <HintsPanel />
         </div>
 
         <!-- Grade do puzzle (70% do espaço) -->
-        <div class="lg:w-[70%] flex-1 animate-fade-in" style="animation-delay: 0.1s">
+        <div class="lg:w-[70%] flex-1 lg:h-full animate-fade-in" style="animation-delay: 0.1s">
           <EinsteinGrid />
         </div>
       </div>
